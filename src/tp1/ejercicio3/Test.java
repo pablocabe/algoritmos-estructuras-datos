@@ -22,21 +22,21 @@ public class Test {
         arrayEstudiantes[1].setDireccion("Calle 25");
 
         // Asignrar valores a los Profesores
-        arrayProfesores[0] = new Profesor("", "", "", "", "");
+        arrayProfesores[0] = new Profesor();
         arrayProfesores[0].setNombre("Carlos");
         arrayProfesores[0].setApellido("López");
         arrayProfesores[0].setEmail("carlos@unlp.edu.ar");
         arrayProfesores[0].setCatedra("Algoritmos");
         arrayProfesores[0].setFacultad("Informática");
 
-        arrayProfesores[1] = new Profesor("", "", "", "", "");
+        arrayProfesores[1] = new Profesor();
         arrayProfesores[1].setNombre("Ana");
         arrayProfesores[1].setApellido("Martínez");
         arrayProfesores[1].setEmail("ana@unlp.edu.ar");
         arrayProfesores[1].setCatedra("Bases de Datos");
         arrayProfesores[1].setFacultad("Informática");
 
-        arrayProfesores[2] = new Profesor("", "", "", "", "");
+        arrayProfesores[2] = new Profesor();
         arrayProfesores[2].setNombre("Luis");
         arrayProfesores[2].setApellido("Rodríguez");
         arrayProfesores[2].setEmail("luis@unlp.edu.ar");
