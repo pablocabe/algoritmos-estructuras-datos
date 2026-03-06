@@ -15,6 +15,8 @@ public class Profesor {
         this.catedra = catedra;
         this.facultad = facultad;
     }
+
+    public Profesor () {}
     
     public String tusDatos() {
     	return "Nombre: "+ this.getNombre() + 
