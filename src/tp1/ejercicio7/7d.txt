@@ -1,0 +1,23 @@
+Hay dos formas principales, y el ejercicio después te pregunta justamente la diferencia entre ellas:
+
+Shallow copy (copia superficial):
+
+javaArrayList<Estudiante> listaCopia = new ArrayList<>(listaOriginal);
+
+Crea una lista nueva, pero los objetos Estudiante adentro son los mismos — ambas listas apuntan a los mismos objetos en memoria.
+
+Deep copy (copia profunda):
+
+javaArrayList<Estudiante> listaCopia = new ArrayList<>();
+for (Estudiante e : listaOriginal) {
+    Estudiante nuevo = new Estudiante();
+    nuevo.setNombre(e.getNombre());
+    // ... copias cada atributo manualmente
+    listaCopia.add(nuevo);
+}
+
+Crea una lista nueva y también objetos nuevos — cada Estudiante es una copia independiente.
+
+La diferencia clave es: si hacés una shallow copy y modificás un Estudiante,
+el cambio se va a ver en ambas listas porque comparten el mismo objeto.
+Con deep copy, los cambios en una lista no afectan a la otra.
