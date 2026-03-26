@@ -1,0 +1,5 @@
+Estructura: CircularQueue
+
+Porque las paradas de una línea se recorren siempre en el mismo orden y
+de forma repetida durante el día — cuando el colectivo llega a la última parada, vuelve a la primera.
+Eso es exactamente lo que modela shift(): saca la parada del frente y la manda al final, rotando indefinidamente.
