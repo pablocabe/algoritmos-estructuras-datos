@@ -113,7 +113,7 @@ public class BinaryTree <T> {
 
         // Iteramos mientras haya elementos en la cola y no nos pasemos del nivel m
         while (!cola.isEmpty() && nivelActual <= m) {
-            BinaryTree<T> nodoActual = cola.poll(); // Desencolamos
+            BinaryTree<T> nodoActual = cola.poll(); // Desencolamos con poll porque remove lanza excepción si es null
 
             if (nodoActual != null) {
                 // Si el nodo no es la marca, verificamos si debemos imprimirlo
