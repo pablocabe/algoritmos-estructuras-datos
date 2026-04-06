@@ -6,7 +6,6 @@ public class BinaryTree <T> {
 	private BinaryTree<T> leftChild;   
 	private BinaryTree<T> rightChild; 
 
-	
 	public BinaryTree() {
 		super();
 	}
@@ -59,7 +58,6 @@ public class BinaryTree <T> {
 
 	public boolean isLeaf() {
 		return (!this.hasLeftChild() && !this.hasRightChild());
-
 	}
 		
 	public boolean hasLeftChild() {
@@ -69,27 +67,38 @@ public class BinaryTree <T> {
 	public boolean hasRightChild() {
 		return this.rightChild!=null;
 	}
+
 	@Override
 	public String toString() {
 		return this.getData().toString();
 	}
 
-	public  int contarHojas() {
-	   
-		return 0;
+	// Un nodo es hoja cuando no tiene hijos = +1 cantHojas
+	public int contarHojas() {
+		if (this.isLeaf()) return 1;
+		int cantHojas = 0;
+		if (this.hasLeftChild())
+			cantHojas += this.getLeftChild().contarHojas();
+		if (this.hasRightChild())
+			cantHojas += this.getRightChild().contarHojas();
+		return cantHojas;
 	}
-		
-		
     	 
-    public BinaryTree<T> espejo(){
-		       		  
- 	   return null;
+	public BinaryTree<T> espejo() {
+		if (this.isLeaf())
+			return new BinaryTree<T>(this.getData());
+		BinaryTree<T> nuevoNodo = new BinaryTree<T>(this.getData());
+		if (this.hasRightChild())
+			nuevoNodo.addLeftChild(this.getRightChild());
+		if (this.hasLeftChild())
+			nuevoNodo.addRightChild(this.getLeftChild());
+ 		return nuevoNodo;
     }
 
 	// 0<=n<=m
-	public void entreNiveles(int n, int m){
+	public void entreNiveles(int n, int m) {
 		
-   }
+	}
 		
 }
 
