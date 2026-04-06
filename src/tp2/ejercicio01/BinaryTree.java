@@ -1,5 +1,8 @@
 package tp2.ejercicio01;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class BinaryTree <T> {
 	
 	private T data;
@@ -89,15 +92,51 @@ public class BinaryTree <T> {
 			return new BinaryTree<T>(this.getData());
 		BinaryTree<T> nuevoNodo = new BinaryTree<T>(this.getData());
 		if (this.hasRightChild())
-			nuevoNodo.addLeftChild(this.getRightChild());
+			nuevoNodo.addLeftChild(this.getRightChild().espejo());
 		if (this.hasLeftChild())
-			nuevoNodo.addRightChild(this.getLeftChild());
+			nuevoNodo.addRightChild(this.getLeftChild().espejo());
  		return nuevoNodo;
     }
 
 	// 0<=n<=m
-	public void entreNiveles(int n, int m) {
-		
+    public void entreNiveles(int n, int m) {
+        // Validación básica por si el árbol está vacío o los parámetros son ilógicos
+        if (this.isEmpty() || n < 0 || n > m) {
+            return;
+        }
+
+        Queue<BinaryTree<T>> cola = new LinkedList<>();
+        cola.add(this); // Encolamos la raíz
+        cola.add(null); // Encolamos nuestra marca de fin del nivel 0
+        
+        int nivelActual = 0;
+
+        // Iteramos mientras haya elementos en la cola y no nos pasemos del nivel m
+        while (!cola.isEmpty() && nivelActual <= m) {
+            BinaryTree<T> nodoActual = cola.poll(); // Desencolamos
+
+            if (nodoActual != null) {
+                // Si el nodo no es la marca, verificamos si debemos imprimirlo
+                if (nivelActual >= n && nivelActual <= m) {
+                    System.out.print(nodoActual.getData() + " ");
+                }
+
+                // Encolamos a sus hijos para que se procesen en el siguiente nivel
+                if (nodoActual.hasLeftChild()) {
+                    cola.add(nodoActual.getLeftChild());
+                }
+                if (nodoActual.hasRightChild()) {
+                    cola.add(nodoActual.getRightChild());
+                }
+            } else {
+                // Si el nodoActual es null, significa que terminamos de procesar un nivel
+                if (!cola.isEmpty()) {
+                    System.out.println(); // Opcional: un salto de línea para separar visualmente los niveles
+                    cola.add(null); // Ponemos la marca para el final del próximo nivel
+                    nivelActual++;
+                }
+            }
+        }
 	}
 		
 }
