@@ -14,6 +14,7 @@ public class ProfundidadDeArbolBinario {
         return sumaRecursiva(this.arbolBinario, p);
     }
 
+    // Consultar sobre si es necesasario preguntar siempre o solo una vez.
     public int sumaRecursiva(BinaryTree<Integer> nodo, int profundidadRestante) {
         // 1. Caso base nulo: si el árbol está vacío o llegamos a un nodo nulo
         if (nodo == null || nodo.isEmpty()) {
