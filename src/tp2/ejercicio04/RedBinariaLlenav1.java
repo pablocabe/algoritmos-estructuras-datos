@@ -2,11 +2,11 @@ package tp2.ejercicio04;
 import tp2.ejercicio01.BinaryTree;
 
 
-public class RedBinariaLlena {
+public class RedBinariaLlenav1 {
 
     private BinaryTree<Integer> arbol;
 
-    public RedBinariaLlena(BinaryTree<Integer> arbol) {
+    public RedBinariaLlenav1(BinaryTree<Integer> arbol) {
         this.arbol = arbol;
     }
 
@@ -17,7 +17,7 @@ public class RedBinariaLlena {
         return 0;
     }
 
-    // Pero si está lleno, es necesario preguntar con los ifs?
+    // Pero si está lleno, es necesario preguntar con los ifs? Para eso es la v2
     public int calcularRetardoMaximo(BinaryTree<Integer> nodo) {
 
         int retardoIzquierdo = 0;
@@ -30,18 +30,6 @@ public class RedBinariaLlena {
             retardoDerecho = calcularRetardoMaximo(nodo.getRightChild());
 
         return (Math.max(retardoIzquierdo, retardoDerecho) + nodo.getData());
-    }
-
-    // Segunda opción
-    public int calcularRetardoMaximo(BinaryTree<Integer> nodo) {
-
-        int retardoIzquierdo = 0;
-        int retardoDerecho = 0;
-
-        if (nodo.isLeaf()) {
-            return nodo.getData();
-        }
-        return (Math.max(calcularRetardoMaximo(nodo.getLeftChild()), calcularRetardoMaximo(nodo.getRightChild()) + nodo.getData()));
     }
     
 }
