@@ -12,16 +12,14 @@ public class ParcialArbolesv2 {
 
     public boolean isLeftTree(int num) {
         
-        if (this.arbolBinario == null || this.arbolBinario.isEmpty())
-            return false;
+        if (this.arbolBinario == null || this.arbolBinario.isEmpty()) return false;
 
         int cantHijosUnicosSubArbolIzquierdo = 0;
         int cantHijosUnicosSubArbolDerecho = 0;
 
         BinaryTree<Integer> nuevaRaiz = buscarNodo(num, this.arbolBinario);
         // Si no encontré num entonces nuevaRaiz es null
-        if (nuevaRaiz == null)
-            return false;
+        if (nuevaRaiz == null) return false;
 
         // Si tiene un hijo contabilizo, sino le asigno -1
         cantHijosUnicosSubArbolIzquierdo = nuevaRaiz.hasLeftChild() ? contabilizarHijos(nuevaRaiz.getLeftChild()) : -1;
