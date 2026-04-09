@@ -2,37 +2,30 @@ package tp2.ejercicio07;
 
 import tp2.ejercicio01.BinaryTree;
 
-public class ParcialArboles {
+public class ParcialArbolesv2 {
 
     private BinaryTree<Integer> arbolBinario;
 
-    public ParcialArboles(BinaryTree<Integer> arbolBinario) {
+    public ParcialArbolesv2(BinaryTree<Integer> arbolBinario) {
         this.arbolBinario = arbolBinario;
     }
 
     public boolean isLeftTree(int num) {
+        
+        if (this.arbolBinario == null || this.arbolBinario.isEmpty())
+            return false;
+
         int cantHijosUnicosSubArbolIzquierdo = 0;
         int cantHijosUnicosSubArbolDerecho = 0;
-        
-        if (this.arbolBinario != null && !this.arbolBinario.isEmpty()){
-            BinaryTree<Integer> nuevaRaiz = buscarNodo(num, this.arbolBinario);
-            // Si no encontré num entonces nuevaRaiz es null
-            if (nuevaRaiz != null) {
-                // Si tiene un hijo contabilizo, sino le asigno -1
-                if (nuevaRaiz.hasLeftChild()) {
-                    cantHijosUnicosSubArbolIzquierdo = contabilizarHijos(nuevaRaiz.getLeftChild());
-                }
-                else {
-                    cantHijosUnicosSubArbolIzquierdo = -1;
-                }
-                if (nuevaRaiz.hasRightChild()) {
-                    cantHijosUnicosSubArbolDerecho = contabilizarHijos(nuevaRaiz.getRightChild());
-                }
-                else {
-                    cantHijosUnicosSubArbolDerecho = -1;
-                }
-            }
-        }
+
+        BinaryTree<Integer> nuevaRaiz = buscarNodo(num, this.arbolBinario);
+        // Si no encontré num entonces nuevaRaiz es null
+        if (nuevaRaiz == null)
+            return false;
+
+        // Si tiene un hijo contabilizo, sino le asigno -1
+        cantHijosUnicosSubArbolIzquierdo = nuevaRaiz.hasLeftChild() ? contabilizarHijos(nuevaRaiz.getLeftChild()) : -1;
+        cantHijosUnicosSubArbolDerecho = nuevaRaiz.hasRightChild() ? contabilizarHijos(nuevaRaiz.getRightChild()) : -1;
         return (cantHijosUnicosSubArbolIzquierdo > cantHijosUnicosSubArbolDerecho);
     }
 
