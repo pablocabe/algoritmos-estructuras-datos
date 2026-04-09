@@ -50,10 +50,11 @@ public class ParcialArboles {
     private int contabilizarHijos(BinaryTree<Integer> nodo) {
         if (nodo.isLeaf())
             return 0;
-        if (nodo.hasLeftChild() && !nodo.hasRightChild())
+        else if (nodo.hasLeftChild() && !nodo.hasRightChild())
             return 1 + contabilizarHijos(nodo.getLeftChild());
         else if (!nodo.hasLeftChild() && nodo.hasRightChild())
             return 1 + contabilizarHijos(nodo.getRightChild());
+        // Por descarte, si no cumple ninguna de las otras condiciones, tiene ambos hijos
         else
             return 0 + contabilizarHijos(nodo.getLeftChild()) + contabilizarHijos(nodo.getRightChild());
     }
