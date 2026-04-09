@@ -19,12 +19,15 @@ public class Transformacion {
     }
 
     // Método privado auxiliar
+    // Método privado auxiliar
     private int sumaRecursiva(BinaryTree<Integer> nodo) {
         
-        // 1. Guardamos el dato original antes de sobreescribirlo.
-        // Aplicamos el chequeo de null que aprendimos en el ejercicio anterior.
-        if (nodo.getData() != null)
-            return 0;
+        // 1. Guardamos el dato original de este nodo.
+        // Asumimos 0 si el dato llega a ser null (por precaución).
+        int valorOriginal = 0;
+        if (nodo.getData() != null) {
+            valorOriginal = nodo.getData();
+        }
 
         // 2. Paso recursivo (Post-Orden: primero los hijos)
         int sumaIzquierda = 0;
@@ -42,8 +45,7 @@ public class Transformacion {
         nodo.setData(sumaIzquierda + sumaDerecha);
 
         // 4. ¿Qué le devolvemos al padre? 
-        // Le devolvemos el total de este subárbol entero para que él lo use.
-        // Es decir: todo lo que sumaron sus hijos.
-        return sumaIzquierda + sumaDerecha;
+        // Le devolvemos EL TOTAL: lo que sumaban sus hijos MÁS su valor original.
+        return valorOriginal + sumaIzquierda + sumaDerecha;
     }
 }
