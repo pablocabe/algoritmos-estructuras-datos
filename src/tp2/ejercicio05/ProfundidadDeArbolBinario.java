@@ -11,19 +11,19 @@ public class ProfundidadDeArbolBinario {
     }
 
     public int sumaElementosProfundidad(int p) {
+        // 1. Caso base nulo: si el árbol está vacío
+        if (this.arbolBinario == null || this.arbolBinario.isEmpty())
+            return 0;
         return sumaRecursiva(this.arbolBinario, p);
     }
 
     // Consultar sobre si es necesasario preguntar siempre o solo una vez.
-    public int sumaRecursiva(BinaryTree<Integer> nodo, int profundidadRestante) {
-        // 1. Caso base nulo: si el árbol está vacío o llegamos a un nodo nulo
-        if (nodo == null || nodo.isEmpty()) {
-            return 0;
-        }
-
+    private int sumaRecursiva(BinaryTree<Integer> nodo, int profundidadRestante) {
         // 2. Caso base de éxito: llegamos al nivel que estábamos buscando
         if (profundidadRestante == 0) {
-            return nodo.getData();
+            if (nodo.getData() != null) {
+                return nodo.getData();
+            }
         }
 
         // 3. Paso recursivo: aún falta bajar más niveles (profundidadRestante > 0)

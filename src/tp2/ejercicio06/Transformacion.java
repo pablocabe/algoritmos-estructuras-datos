@@ -19,7 +19,6 @@ public class Transformacion {
     }
 
     // Método privado auxiliar
-    // Método privado auxiliar
     private int sumaRecursiva(BinaryTree<Integer> nodo) {
         
         // 1. Guardamos el dato original de este nodo.
