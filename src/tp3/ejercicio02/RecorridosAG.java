@@ -26,7 +26,7 @@ public class RecorridosAG {
     private void numerosImparesMayoresQuePreOrden(GeneralTree<Integer> a, Integer n, List<Integer> listaImparesMayores) {
         int datoActual = a.getData();
         if ((datoActual % 2 != 0) && (datoActual > n))
-                listaImparesMayores.add(datoActual);
+            listaImparesMayores.add(datoActual);
         List<GeneralTree<Integer>> children = a.getChildren();
         for (GeneralTree<Integer> child: children)
             this.numerosImparesMayoresQuePreOrden(child, n, listaImparesMayores);
