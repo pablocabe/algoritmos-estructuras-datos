@@ -59,11 +59,18 @@ public class GeneralTree<T>{
 			children.remove(child);
 	}
 	
-	public int altura() {	 
-			
-		return 0;
+	public int altura() {
+		if (!this.isEmpty())
+			return this.alturaHelper();
+		else
+			return 0;
 	}
 	
+	private int alturaHelper() {
+		// TODO Auto-generated method stub
+		throw new UnsupportedOperationException("Unimplemented method 'alturaHelper'");
+	}
+
 	public int nivel(T dato){
 		return 0;
 	  }
