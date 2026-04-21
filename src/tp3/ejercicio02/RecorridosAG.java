@@ -55,7 +55,7 @@ public class RecorridosAG {
     // Método que retorna una lista con los elementos impares del árbol “a” 
     // que sean mayores al valor “n” pasados como parámetros, recorrido en postorden.
     public List<Integer> numerosImparesMayoresQuePostOrden (GeneralTree <Integer> a, Integer n) {
-        List<Integer> listaImparesMayores = new LinkedList<Integer>;
+        List<Integer> listaImparesMayores = new LinkedList<Integer>();
         if (!a.isEmpty())
             this.numerosImparesMayoresQuePostOrden(a, n, listaImparesMayores);
         return listaImparesMayores;
