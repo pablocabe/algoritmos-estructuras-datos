@@ -67,8 +67,15 @@ public class GeneralTree<T>{
 	}
 	
 	private int alturaHelper() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("Unimplemented method 'alturaHelper'");
+		if (this.isLeaf())
+			return 0;
+		else {
+			int alturaMax = -1;
+			List<GeneralTree<T>> children = this.getChildren();
+			for (GeneralTree<T> child: children)
+				alturaMax = Math.max(alturaMax, child.alturaHelper());
+			return alturaMax+1;
+		}
 	}
 
 	public int nivel(T dato){
