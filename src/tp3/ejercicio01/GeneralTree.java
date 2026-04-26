@@ -2,6 +2,7 @@ package tp3.ejercicio01;
 
 import java.util.LinkedList;
 import java.util.List;
+import tp1.ejercicio08.Queue;
 
 public class GeneralTree<T>{
 
@@ -70,17 +71,45 @@ public class GeneralTree<T>{
 		if (this.isLeaf())
 			return 0;
 		else {
-			int alturaMax = -1;
+			int alturaMax = -1; // Nunca va a quedar en -1 porque no es hoja = tiene hijos
 			List<GeneralTree<T>> children = this.getChildren();
 			for (GeneralTree<T> child: children)
 				alturaMax = Math.max(alturaMax, child.alturaHelper());
-			return alturaMax+1;
+			return alturaMax + 1;
 		}
 	}
 
 	public int nivel(T dato){
-		return 0;
-	  }
+		if (!this.isEmpty())
+			return this.nivelHelper(dato);
+		else
+			return 0;
+	}
+
+	private int nivelHelper(T dato) {
+		int cont = 0;
+        int act;
+        GeneralTree<T> aux;
+        Queue<GeneralTree<T>> cola = new Queue<>();
+        cola.enqueue(this);
+        while(!cola.isEmpty()){
+            act = cola.size();
+            for(int i = 0; i < act; ++i){
+                aux = cola.dequeue();
+                if(aux.getData().equals(dato)){
+                    return cont;
+                }
+                else{
+                    for(GeneralTree<T> child : aux.getChildren()){
+                        cola.enqueue(child);
+                    }
+                }
+            }
+            cont++;
+        }
+        return -1;
+	}
+
 
 	public int ancho(){
 		return 0;
