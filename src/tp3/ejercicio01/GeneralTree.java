@@ -97,13 +97,12 @@ public class GeneralTree<T>{
             act = cola.size();
             for(int i = 0; i < act; ++i){
                 aux = cola.dequeue();
-                if(aux.getData().equals(dato)){
+                if (aux.getData().equals(dato)){
                     return cont;
                 }
-                else{
-                    for(GeneralTree<T> child : aux.getChildren()){
+                else {
+                	for (GeneralTree<T> child : aux.getChildren())
                         cola.enqueue(child);
-                    }
                 }
             }
             cont++;
@@ -111,8 +110,13 @@ public class GeneralTree<T>{
         return -1;
 	}
 
-
 	public int ancho(){
 		return 0;
 	}
+
+	// Devuelve true si el valor “a” es ancestro del valor “b”.
+	public boolean esAncestro(int a, int b) {
+
+	}
+
 }
