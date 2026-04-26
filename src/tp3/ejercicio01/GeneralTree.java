@@ -115,8 +115,18 @@ public class GeneralTree<T>{
 	}
 
 	// Devuelve true si el valor “a” es ancestro del valor “b”.
-	public boolean esAncestro(int a, int b) {
+	public boolean esAncestro(T a, T b) {
+		if (!this.isEmpty())
+			return esAncestroAux(a, b);
+		else
+			return false;
+	}
 
+	private boolean esAncestroAux(T a, T b) {
+		boolean esAncestro = false;
+		boolean encontreA = false;
+		boolean encontreB = false;
+		return true;
 	}
 
 }
