@@ -1,5 +1,6 @@
 package parciales;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import tp3.ejercicio01.GeneralTree;
@@ -17,6 +18,7 @@ public class Parcial01 {
     }
 
     private static void resolver (GeneralTree<Integer> nodoActual, List<Integer> mejorCamino, List<Integer> caminoActual, boolean esperaPar) {
+        
         caminoActual.add(nodoActual.getData());
 
         if (nodoActual.isLeaf() && caminoActual.size() > mejorCamino.size()) {
@@ -25,12 +27,21 @@ public class Parcial01 {
         }
 
         else {
+            boolean esAlternante = true;
+            List<GeneralTree<Integer>> children = nodoActual.getChildren();
+            Iterator<GeneralTree<Integer>> iterator = children.iterator();
 
-        }
-        
-        caminoActual.remove(caminoActual.size()-1);
+            while (esAlternante && iterator.hasNext()) {
+                GeneralTree<Integer> child = iterator.next();
+                if (esperaPar == (child.getData() % 2 == 0)) {
+                    esperaPar = !esperaPar;
+                    resolver (child, mejorCamino, caminoActual, esperaPar);
+                }
+                else
+                    esAlternante = false;
+            }
             
         }
+        caminoActual.remove(caminoActual.size()-1);
+    }
 }
-
-    
