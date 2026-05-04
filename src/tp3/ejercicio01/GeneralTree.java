@@ -136,19 +136,45 @@ public class GeneralTree<T>{
 	}
 
 	// Devuelve true si el valor “a” es ancestro del valor “b”.
+    // Recorrido en profundidad preorden
 	public boolean esAncestro(T a, T b) {
-		if (!this.isEmpty())
-			return esAncestroAux(a, b);
-		else
-			return false;
+        boolean esAncestro = false;
+		if (!this.isEmpty()) {
+            GeneralTree<T> nodoA = buscarNodoA(a);
+            if (nodoA != null) {
+                esAncestro = nodoA.buscarNodoB(b);
+            }
+        }
+		return esAncestro;
 	}
 
-	private boolean esAncestroAux(T a, T b) {
-		boolean esAncestro = false;
-		boolean encontreA = false;
-		boolean encontreB = false;
-		return true;
-	}
+    private GeneralTree<T> buscarNodoA(T a) {
+        GeneralTree<T> nodoEncontrado = null;
+        if (this.getData().equals(a))
+            nodoEncontrado = this;
+        else {
+            Iterator<GeneralTree<T>> iterator = this.getChildren().iterator();
+            while (iterator.hasNext() && nodoEncontrado == null) {
+                GeneralTree<T> child = iterator.next();
+                nodoEncontrado = child.buscarNodoA(a);
+            }
+        }
+        return nodoEncontrado;
+    }
+
+    private boolean buscarNodoB(T b) {
+        boolean encontreB = false;
+        if (this.getData().equals(b))
+            encontreB = true;
+        else {
+            Iterator<GeneralTree<T>> iterator = this.getChildren().iterator();
+            while (iterator.hasNext() && !encontreB) {
+                GeneralTree<T> child = iterator.next();
+                encontreB = child.buscarNodoB(b);
+            }
+        }
+        return encontreB;
+    }
 
 	// Método que retorna una lista con los elementos impares del árbol “a” 
     // que sean mayores al valor “n” pasados como parámetros, recorrido en preorden.
