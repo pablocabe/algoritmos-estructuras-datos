@@ -1,6 +1,8 @@
 package tp3.ejercicio01;
 
 import tp1.ejercicio08.Queue;
+
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -62,7 +64,7 @@ public class GeneralTree<T>{
 	}
 	
 	public int altura() {
-		if (!this.isEmpty())
+		if (this != null && !this.isEmpty())
 			return this.alturaHelper();
 		else
 			return 0;
@@ -73,8 +75,7 @@ public class GeneralTree<T>{
 			return 0;
 		else {
 			int alturaMax = -1; // Nunca va a quedar en -1 porque no es hoja = tiene hijos
-			List<GeneralTree<T>> children = this.getChildren();
-			for (GeneralTree<T> child: children)
+			for (GeneralTree<T> child: this.getChildren())
 				alturaMax = Math.max(alturaMax, child.alturaHelper());
 			return alturaMax + 1;
 		}
@@ -84,30 +85,50 @@ public class GeneralTree<T>{
 		if (!this.isEmpty())
 			return this.nivelHelper(dato);
 		else
-			return 0;
+			return -1;
 	}
 
-	private int nivelHelper(T dato) {
-		int cont = 0;
-        int act;
-        GeneralTree<T> aux;
-        Queue<GeneralTree<T>> cola = new Queue<>();
-        cola.enqueue(this);
-        while(!cola.isEmpty()){
-            act = cola.size();
-            for(int i = 0; i < act; ++i){
-                aux = cola.dequeue();
-                if (aux.getData().equals(dato)){
-                    return cont;
-                }
-                else {
-                	for (GeneralTree<T> child : aux.getChildren())
-                        cola.enqueue(child);
-                }
+    /* private int nivelHelper (T dato) {
+        int cont = -1;
+        if (this.data.equals(dato))
+            cont = 0;
+        else {
+            Iterator<GeneralTree<T>> iterador = this.getChildren().iterator();
+            while (iterador.hasNext() && cont == -1) {
+                GeneralTree<T> child = iterador.next(); 
+                cont = child.nivelHelper(dato); 
+                if (cont != -1)
+                    cont++;
             }
-            cont++;
         }
-        return -1;
+        return cont;
+    }
+    */
+
+	private int nivelHelper(T dato) {
+
+		boolean encontre = false;
+        int nivelActual = 0;
+        int nivelFinal = -1;
+
+        Queue<GeneralTree<T>> queue = new Queue<>();
+        queue.enqueue(this);
+
+        while ((!encontre) && (!queue.isEmpty())) {
+            int nodosEnNivel= queue.size();
+            for (int i = 0; (i < nodosEnNivel) && (!encontre); i++) {
+                GeneralTree<T> aux = queue.dequeue();
+                if (aux.getData().equals(dato)) {
+                    encontre = true;
+                    nivelFinal = nivelActual;
+                }
+                else for (GeneralTree<T> children: aux.getChildren())
+                    queue.enqueue(children);
+            }
+            nivelActual++;
+        }
+
+        return nivelFinal;
 	}
 
 	public int ancho(){
