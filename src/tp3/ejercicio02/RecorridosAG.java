@@ -8,15 +8,6 @@ import tp3.ejercicio01.GeneralTree;
 
 public class RecorridosAG {
 
-    private GeneralTree<Integer> a;
-
-    public RecorridosAG() {}
-
-    public RecorridosAG(GeneralTree<Integer> a) {
-        this.a = a;
-    }
-
-
     // Método que retorna una lista con los elementos impares del árbol “a” 
     // que sean mayores al valor “n” pasados como parámetros, recorrido en preorden.
     public List<Integer> numerosImparesMayoresQuePreOrden (GeneralTree <Integer> a, Integer n) {
