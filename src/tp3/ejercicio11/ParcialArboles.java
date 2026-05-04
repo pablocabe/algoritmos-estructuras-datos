@@ -10,7 +10,7 @@ public class ParcialArboles {
     public static boolean resolver(GeneralTree<Integer> arbol) {
         if ((arbol != null) && (!arbol.isEmpty())) {
             boolean esCreciente = true;
-            int nivelActual = 1; // Representa la cantidad de nodos que ESPERAMOS en este nivel
+            int nodosEsperados = 1; // Representa la cantidad de nodos que ESPERAMOS en este nivel
             Queue<GeneralTree<Integer>> cola = new Queue<>();
             cola.enqueue(arbol);
         
@@ -19,20 +19,19 @@ public class ParcialArboles {
                 int nodosEnEsteNivel = cola.size();
                 
                 // 2. Verificamos la condición del parcial para este nivel
-                if (nivelActual != nodosEnEsteNivel) {
+                if (nodosEsperados != nodosEnEsteNivel) {
                     esCreciente = false;
                 } 
                 else {
                     // 3. Procesamos TODOS los nodos de este nivel usando la "foto"
                     for (int i = 0; i < nodosEnEsteNivel; i++) {
                         GeneralTree<Integer> aux = cola.dequeue();
-                        List<GeneralTree<Integer>> children = aux.getChildren();
-                        for (GeneralTree<Integer> child: children) {
+                        for (GeneralTree<Integer> child: aux.getChildren()) {
                             cola.enqueue(child);
                         }
                     }
                     // 4. Preparamos la variable para la próxima vuelta del while (el próximo nivel)
-                    nivelActual++;
+                    nodosEsperados++;
                 }
             }
             return esCreciente;

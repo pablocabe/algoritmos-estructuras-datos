@@ -129,4 +129,81 @@ public class GeneralTree<T>{
 		return true;
 	}
 
+	// Método que retorna una lista con los elementos impares del árbol “a” 
+    // que sean mayores al valor “n” pasados como parámetros, recorrido en preorden.
+    public List<Integer> numerosImparesMayoresQuePreOrden (Integer n) {
+        List<Integer> listaImparesMayores = new LinkedList<Integer>();
+        if ((this != null) && (!this.isEmpty()))
+            this.numerosImparesMayoresQuePreOrden(n, listaImparesMayores);
+        return listaImparesMayores;
+    }
+
+    private void numerosImparesMayoresQuePreOrden(Integer n, List<Integer> listaImparesMayores) {
+        int datoActual = (int) this.getData();
+        if ((datoActual % 2 != 0) && (datoActual > n))
+            listaImparesMayores.add(datoActual);
+        List<GeneralTree<T>> children = this.getChildren();
+        for (GeneralTree<T> child: children)
+            child.numerosImparesMayoresQuePreOrden(n, listaImparesMayores);
+    }
+
+    // Método que retorna una lista con los elementos impares del árbol “a” 
+    // que sean mayores al valor “n” pasados como parámetros, recorrido en inorden.
+    public List<Integer> numerosImparesMayoresQueInOrden (Integer n) {
+        List<Integer> listaImparesMayores = new LinkedList<Integer>();
+        if ((this != null) && (!this.isEmpty()))
+            this.numerosImparesMayoresQueInOrden(n, listaImparesMayores);
+        return listaImparesMayores;
+    }
+
+    private void numerosImparesMayoresQueInOrden(Integer n, List<Integer> listaImparesMayores) {
+        List<GeneralTree<T>> children = this.getChildren();
+        if (this.hasChildren())
+            children.get(0).numerosImparesMayoresQueInOrden(n, listaImparesMayores);
+        int datoActual = (int) this.getData();
+        if ((datoActual % 2 != 0) && (datoActual > n))
+                listaImparesMayores.add(datoActual);
+        for (int i = 1; i < children.size(); i++)
+            children.get(i).numerosImparesMayoresQueInOrden(n, listaImparesMayores);
+    }
+
+    // Método que retorna una lista con los elementos impares del árbol “a” 
+    // que sean mayores al valor “n” pasados como parámetros, recorrido en postorden.
+    public List<Integer> numerosImparesMayoresQuePostOrden (Integer n) {
+        List<Integer> listaImparesMayores = new LinkedList<Integer>();
+        if ((this != null) && (!this.isEmpty()))
+            this.numerosImparesMayoresQuePostOrden(n, listaImparesMayores);
+        return listaImparesMayores;
+    }
+
+    private void numerosImparesMayoresQuePostOrden(Integer n, List<Integer> listaImparesMayores){
+        List<GeneralTree<T>> children = this.getChildren();
+        for (GeneralTree<T> child: children)
+            child.numerosImparesMayoresQuePreOrden(n, listaImparesMayores);
+        int datoActual = (int) this.getData();
+        if ((datoActual % 2 != 0) && (datoActual > n))
+                listaImparesMayores.add(datoActual);
+    }
+
+    // Método que retorna una lista con los elementos impares del árbol “a”
+    // que sean mayores al valor “n” pasados como parámetros, recorrido por niveles.
+    public List<Integer> numerosImparesMayoresQuePorNiveles(Integer n) {
+        List<Integer> listaImparesMayores = new LinkedList<Integer>();
+        if ((this != null) && (!this.isEmpty())) {
+            int datoActual;
+            GeneralTree<T> aux;
+            Queue<GeneralTree<T>> queue = new Queue<>();
+            queue.enqueue(this);
+            while (!queue.isEmpty()) {
+                aux = queue.dequeue();
+                datoActual = (int) aux.getData();
+                if ((datoActual % 2 != 0) && (datoActual > n))
+                    listaImparesMayores.add(datoActual);
+                for (GeneralTree<T> child: aux.getChildren())
+                    queue.enqueue(child);
+            }
+        }
+        return listaImparesMayores;
+    }
+
 }
