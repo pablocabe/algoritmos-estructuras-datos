@@ -226,7 +226,7 @@ public class GeneralTree<T>{
     private void numerosImparesMayoresQuePostOrden(Integer n, List<Integer> listaImparesMayores){
         List<GeneralTree<T>> children = this.getChildren();
         for (GeneralTree<T> child: children)
-            child.numerosImparesMayoresQuePreOrden(n, listaImparesMayores);
+            child.numerosImparesMayoresQuePostOrden(n, listaImparesMayores);
         int datoActual = (int) this.getData();
         if ((datoActual % 2 != 0) && (datoActual > n))
                 listaImparesMayores.add(datoActual);
