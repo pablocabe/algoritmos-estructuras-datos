@@ -14,6 +14,8 @@ public class Parcial05Optimizado {
         int nivelActual = 0;
         if ((arbol != null) && (!arbol.isEmpty()))
             recorrerArbol(arbol, resultado, nivelActual);
+        System.out.println(resultado.numeroPar);
+        System.out.println(resultado.nivelActual);
         return resultado;
     }
 
