@@ -4,18 +4,13 @@ import tp2.ejercicio01.BinaryTree;
 
 public class Parcial05Optimizado {
 
-    private class Resultado {
-        int numeroPar = -1;
-        int nivelActual = -1;
-    }
-
     public Resultado resolver (BinaryTree <Integer> arbol) {
         Resultado resultado = new Resultado();
         int nivelActual = 0;
         if ((arbol != null) && (!arbol.isEmpty()))
             recorrerArbol(arbol, resultado, nivelActual);
-        System.out.println(resultado.numeroPar);
-        System.out.println(resultado.nivelActual);
+        System.out.println(resultado.getNumeroPar());
+        System.out.println(resultado.getNivelActual());
         return resultado;
     }
 
@@ -27,8 +22,8 @@ public class Parcial05Optimizado {
             encontrePar = recorrerArbol(nodo.getRightChild(), resultado, nivelActual + 1);
         if ((!encontrePar) && (nodo.getData() % 2 == 0)) {
             encontrePar = true;
-            resultado.numeroPar = nodo.getData();
-            resultado.nivelActual = nivelActual;
+            resultado.setNumeroPar(nodo.getData());
+            resultado.setNivelActual(nivelActual);
         }
         return encontrePar;
     }
