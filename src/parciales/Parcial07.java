@@ -4,7 +4,7 @@ import tp2.ejercicio01.BinaryTree;
 
 public class Parcial07 {
 
-    Boolean resolver(BinaryTree<Integer> arbol) {
+    public Boolean resolver(BinaryTree<Integer> arbol) {
         boolean esPaternal = true;
         if ((arbol != null) && (!arbol.isEmpty()))
             esPaternal = resolverRecursivo(arbol);
