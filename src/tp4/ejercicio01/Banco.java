@@ -10,7 +10,7 @@ public class Banco {
 	/*
 	 * 
 	 * Por cada consulta en consultas[]:
-	 *   Recorro cuentas[] entre el "desde" y el "hasta" de la consulta sumando el valor
+	 * Recorro cuentas[] entre el "desde" y el "hasta" de la consulta sumando el valor
 	 * 
 	 */
 	public static void procesarMovimientos(Integer[] cuentas, Consulta[] consultas) {
