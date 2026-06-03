@@ -80,8 +80,8 @@ public class AdjListGraph<T> implements Graph<T> {
 	}
 
 	/**
-	 * Retorna la arista entre los dos vértices, si es que existe.  Previamente valida
-	 * que el vértice pertenezca al grafo.
+	 * Retorna la arista entre los dos vértices, si es que existe. 
+	 * Previamente valida que el vértice pertenezca al grafo.
 	 */
 	private Edge<T> edge(Vertex<T> origin, Vertex<T> destination) {
 		if (this.belongs(origin)) {
