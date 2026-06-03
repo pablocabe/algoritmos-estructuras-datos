@@ -189,15 +189,41 @@ public class Mapa {
             if ((origen != null) && (destino != null)) {
                 boolean[] marcas = new boolean[this.mapaCiudades.getSize()];
                 List<String> caminoActual = new LinkedList<String>();
-                int tanqueMinimo = 0;
-                int tanqueActual = Integer.MAX_VALUE;
-                caminoConMenorCargaDeCombustible(origen, destino, marcas, caminoMinimo, caminoActual, tanqueAuto, tanqueActual, tanqueMinimo);
+                int recargasActuales = 0;
+                int recargasMinimas = Integer.MAX_VALUE;
+                caminoConMenorCargaDeCombustible(origen, destino, marcas, caminoMinimo, caminoActual, tanqueAuto, tanqueAuto, recargasActuales, recargasMinimas);
             }
         }
         return caminoMinimo;
     }
 
-    private int caminoConMenorCargaDeCombustible(Vertex<String> origen, Vertex<String> destino, boolean[] marcas, List<String> caminoMinimo, List<String> caminoActual, int tanqueAuto, int tanqueActual, int tanqueMinimo) {
-        return 0;
+    private int caminoConMenorCargaDeCombustible(Vertex<String> origen, Vertex<String> destino, boolean[] marcas, List<String> caminoMinimo, List<String> caminoActual, int tanqueAuto, int tanqueActual, int recargasActuales, int recargasMinimas) {
+        marcas[origen.getPosition()] = true;
+        caminoActual.add(origen.getData());
+        if ((origen == destino) && (recargasActuales < recargasMinimas)) {
+            caminoMinimo.removeAll(caminoMinimo);
+            caminoMinimo.addAll(caminoActual);
+            recargasMinimas = recargasActuales;
+        }
+        else {
+            List<Edge<String>> ady = this.mapaCiudades.getEdges(origen);
+            Iterator<Edge<String>> it = ady.iterator();
+            while ((recargasActuales < recargasMinimas) && (it.hasNext())) {
+                Edge<String> e = it.next();
+                int j = e.getTarget().getPosition();
+                int distancia = e.getWeight();
+                if (!marcas[j]) {
+                    if (tanqueActual >= distancia) {
+                        recargasMinimas = caminoConMenorCargaDeCombustible(e.getTarget(), destino, marcas, caminoMinimo, caminoActual, tanqueAuto, tanqueActual - distancia, recargasActuales, recargasMinimas);
+                    }
+                    else if (tanqueAuto >= distancia) {
+                        recargasMinimas = caminoConMenorCargaDeCombustible(origen, destino, marcas, caminoMinimo, caminoActual, tanqueAuto - distancia, tanqueActual, recargasActuales + 1, recargasMinimas);
+                    }
+                }
+            }
+        }
+        marcas[origen.getPosition()] = false;
+        caminoActual.remove(caminoActual.size() - 1);
+        return recargasMinimas;
     }
 }
