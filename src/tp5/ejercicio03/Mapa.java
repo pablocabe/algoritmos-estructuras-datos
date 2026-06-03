@@ -91,7 +91,6 @@ public class Mapa {
         }
     }
 
-    // caminoMasCorto(String ciudad1, String ciudad2): List<String>
     // Retorna la lista de ciudades que forman el camino más corto para llegar de ciudad1 a
     // ciudad2, si no existe camino retorna la lista vacía. (Las rutas poseen la distancia).
     public List<String> caminoMasCorto(String ciudad1, String ciudad2) {
@@ -131,5 +130,74 @@ public class Mapa {
         marcas[origen.getPosition()] = false;
         caminoActual.remove(caminoActual.size() - 1);
         return distanciaMinima;
+    }
+
+    // Retorna la lista de ciudades que forman un camino para llegar de ciudad1 a ciudad2. El auto
+    // no debe quedarse sin combustible y no puede cargar. Si no existe camino retorna la lista vacía.
+    public List<String> caminoSinCargarCombustible(String ciudad1, String ciudad2, int tanqueAuto) {
+        List<String> camino = new LinkedList<String>();
+        if (!this.mapaCiudades.isEmpty()) {
+            Vertex<String> origen = this.mapaCiudades.search(ciudad1);
+            Vertex<String> destino = this.mapaCiudades.search(ciudad2);
+            if ((origen != null) && (destino != null)) {
+                boolean[] marcas = new boolean[this.mapaCiudades.getSize()];
+                int combustibleAcumulado = 0;
+                caminoSinCargarCombustible(origen, destino, tanqueAuto, combustibleAcumulado, camino, marcas);
+            }
+        }
+        return camino;
+    }
+
+    private boolean caminoSinCargarCombustible(Vertex<String> origen, Vertex<String> destino, int tanqueAuto, int combustibleAcumulado, List<String> camino, boolean[] marcas) {
+        boolean encontre = false;
+        marcas[origen.getPosition()] = true;
+        camino.add(origen.getData());
+        if (origen == destino) {
+            encontre = true;
+        }
+        else {
+            List<Edge<String>> ady = this.mapaCiudades.getEdges(origen);
+            Iterator<Edge<String>> it = ady.iterator();
+            while ((combustibleAcumulado < tanqueAuto) && (!encontre) && (it.hasNext())) {
+                Edge<String> e = it.next();
+                int j = e.getTarget().getPosition();
+                // combustibleAcumulado <= tanqueAuto no es posible porque no puede quedarse sin combustible
+                if ((!marcas[j]) && (combustibleAcumulado + e.getWeight() < tanqueAuto)) {
+                    // La variable original combustibleAcumulado de la iteración actual no se modifica. Si devuelve false (no
+                    // llega al destino), el while va a agarrar la siguiente arista (it.next()) y va a volver a hacer la suma
+                    // partiendo del combustible original correcto, sin arrastrar el gasto de la ruta que falló.
+                    encontre = caminoSinCargarCombustible(e.getTarget(), destino, tanqueAuto, combustibleAcumulado + e.getWeight(), camino, marcas);
+                }
+            }
+        }
+        if (!encontre) {
+            camino.remove(camino.size() - 1);
+        }
+        marcas[origen.getPosition()] = false;
+        return encontre;
+    }
+
+    // Retorna la lista de ciudades que forman un camino para llegar de ciudad1 a ciudad2
+    // teniendo en cuenta que el auto debe cargar la menor cantidad de veces. El auto no se
+    // debe quedar sin combustible en medio de una ruta, además puede completar su tanque al
+    // llegar a cualquier ciudad. Si no existe camino retorna la lista vacía.
+    public List<String> caminoConMenorCargaDeCombustible(String ciudad1, String ciudad2, int tanqueAuto) {
+        List<String> caminoMinimo = new LinkedList<String>();
+        if (!this.mapaCiudades.isEmpty()) {
+            Vertex<String> origen = this.mapaCiudades.search(ciudad1);
+            Vertex<String> destino = this.mapaCiudades.search(ciudad2);
+            if ((origen != null) && (destino != null)) {
+                boolean[] marcas = new boolean[this.mapaCiudades.getSize()];
+                List<String> caminoActual = new LinkedList<String>();
+                int tanqueMinimo = 0;
+                int tanqueActual = Integer.MAX_VALUE;
+                caminoConMenorCargaDeCombustible(origen, destino, marcas, caminoMinimo, caminoActual, tanqueAuto, tanqueActual, tanqueMinimo);
+            }
+        }
+        return caminoMinimo;
+    }
+
+    private int caminoConMenorCargaDeCombustible(Vertex<String> origen, Vertex<String> destino, boolean[] marcas, List<String> caminoMinimo, List<String> caminoActual, int tanqueAuto, int tanqueActual, int tanqueMinimo) {
+        return 0;
     }
 }
