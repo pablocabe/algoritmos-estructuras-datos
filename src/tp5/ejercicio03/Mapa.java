@@ -120,7 +120,7 @@ public class Mapa {
         return camino;
     }
 
-    public void marcasCiudadesRestringidas(List<String> ciudades, boolean[] marcas) {
+    private void marcasCiudadesRestringidas(List<String> ciudades, boolean[] marcas) {
         for (String ciudad: ciudades) {
             Vertex<String> vertexAux = this.mapaCiudades.search(ciudad);
             if (vertexAux != null) {
