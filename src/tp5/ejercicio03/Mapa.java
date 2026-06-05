@@ -27,7 +27,7 @@ public class Mapa {
     // Retorna la lista de ciudades que se deben atravesar para ir de ciudad1 a ciudad2 en caso
     // de que se pueda llegar, si no retorna la lista vacía. (Sin tener en cuenta el combustible).
     // Devuelve el primer camino encontrado, por eso utilizo un while y no un for
-    public List<String> devolverCamino(String ciudad1, String ciudad2) {
+    /* public List<String> devolverCamino(String ciudad1, String ciudad2) {
         List<String> camino = new LinkedList<String>();
         if (!this.mapaCiudades.isEmpty()) {
             Vertex<String> origen = this.mapaCiudades.search(ciudad1);
@@ -55,6 +55,44 @@ public class Mapa {
                 Vertex<String> vertexAux = it.next().getTarget();
                 int j = vertexAux.getPosition();
                 if(!marcas[j]) {
+                    encontre = devolverCamino(vertexAux, destino, camino, marcas);
+                }
+            }
+        }
+        if (!encontre) {
+            camino.remove(camino.size() - 1);
+        }
+        return encontre;
+    }
+    */
+
+    public List<String> devolverCamino(String ciudad1, String ciudad2) {
+        List<String> camino = new LinkedList<String>();
+        if (!this.mapaCiudades.isEmpty()) {
+            Vertex<String> origen = this.mapaCiudades.search(ciudad1);
+            Vertex<String> destino = this.mapaCiudades.search(ciudad2);
+            if ((origen!= null) && (destino!= null)) {
+                boolean[] marcas = new boolean[this.mapaCiudades.getSize()];
+                devolverCamino(origen, destino, camino, marcas);
+            }
+        }
+        return camino;
+    }
+
+    private boolean devolverCamino(Vertex<String> origen, Vertex<String> destino, List<String> camino, boolean[] marcas) {
+        boolean encontre = false;
+        marcas[origen.getPosition()] = true;
+        camino.add(origen.getData());
+        if (origen == destino) {
+            encontre = true;
+        }
+        else {
+            List<Edge<String>> ady = this.mapaCiudades.getEdges(origen);
+            Iterator<Edge<String>> it = ady.iterator();
+            while((!encontre) && (it.hasNext())) {
+                Vertex<String> vertexAux = it.next().getTarget();
+                int j = vertexAux.getPosition();
+                if (!marcas[j]) {
                     encontre = devolverCamino(vertexAux, destino, camino, marcas);
                 }
             }
