@@ -5,6 +5,11 @@ public class Ciudad {
     private String nombre;
     private int dias;
 
+    public Ciudad(String nombre, int dias) {
+        this.nombre = nombre;
+        this.dias = dias;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -18,11 +23,6 @@ public class Ciudad {
     }
 
     public void setDias(int dias) {
-        this.dias = dias;
-    }
-
-    public Ciudad(String nombre, int dias) {
-        this.nombre = nombre;
         this.dias = dias;
     }
 
