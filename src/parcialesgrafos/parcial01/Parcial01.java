@@ -28,20 +28,28 @@ public class Parcial01 {
         marcas[origen.getPosition()] = true;
         caminoActual.add(origen.getData().getNombre());
         int diasTotalesAcumulados = diasPreviosAcumulados + origen.getData().getDias();
-        if ((cantDiasVacas == diasTotalesAcumulados) && (caminoActual.size() > caminoMaxCiudades.size())) {
-            caminoMaxCiudades.clear();
-            caminoMaxCiudades.addAll(caminoActual);
+        // Es necesario un if dentro de otro if para ignorar el else de exploración si ya alcancé la cantidad de días exactos de vacaciones
+        if (cantDiasVacas == diasTotalesAcumulados) {
+            if (caminoActual.size() > caminoMaxCiudades.size()) {
+                // No utilizar .removeAll
+                caminoMaxCiudades.clear();
+                caminoMaxCiudades.addAll(caminoActual);
+            }
         }
+        // Si no alcanzamos la cantidad de días exactos de vacaciones entonces exploramos nuevas ciudades
         else {
             List<Edge<Ciudad>> ady = mapa.getEdges(origen);
             for (Edge<Ciudad> e: ady) {
                 Vertex<Ciudad> destino = e.getTarget();
                 int j = destino.getPosition();
+                // Poda para no perder tiempo explorando rutas si la siguiente ciudad excederá los días
                 if ((!marcas[j]) && (diasTotalesAcumulados + destino.getData().getDias() <= cantDiasVacas)) {
                     this.resolverRecursivo(mapa, destino, marcas, caminoMaxCiudades, caminoActual, cantDiasVacas, diasTotalesAcumulados);
                 }
             }
         }
+        // El Backtracking deshace el paso, permitiendo volver a la bifurcación anterior para explorar
+        // caminos alternativos como si nunca hubiésemos visitado esa rama
         marcas[origen.getPosition()] = false;
         caminoActual.remove(caminoActual.size() - 1);
     }
