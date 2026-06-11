@@ -13,7 +13,7 @@ public class Parcial07 {
     public List<String> recorrido(Graph<String> grafo, int cantLocalidades, int cantNafta, List<String> localidadesExceptuadas) {
         LinkedList<String> camino = new LinkedList<String>();
         if (!grafo.isEmpty()) {
-            Vertex<String> origen = buscar(grafo);
+            Vertex<String> origen = grafo.search("Mendoza");
             if (origen != null) {
                 boolean[] marcas = new boolean[grafo.getSize()];
                 marcar(grafo, marcas, localidadesExceptuadas);
@@ -55,18 +55,6 @@ public class Parcial07 {
                 marcas[vertexAux.getPosition()] = true;
             }
         }
-    }
-
-    private Vertex<String> buscar(Graph<String> grafo) {
-        Vertex<String> sitioEncontrado = null;
-        Iterator<Vertex<String>> it = grafo.getVertices().iterator();
-        while ((sitioEncontrado == null) && (it.hasNext())) {
-            Vertex<String> vertexAux = it.next();
-            if (vertexAux.getData().equals("Mendoza")) {
-                sitioEncontrado = vertexAux;
-            }
-        }
-        return sitioEncontrado;
     }
 
 }
