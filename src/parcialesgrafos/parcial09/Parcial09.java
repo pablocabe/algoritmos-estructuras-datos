@@ -26,9 +26,11 @@ public class Parcial09 {
     private void rutaOptimaDistribucion(Graph<String> grafo, Vertex<String> origen, Vertex<String> destino, boolean[] marcas, List<String> caminoOptimo, List<String> caminoActual, int maxPociones) {
         marcas[origen.getPosition()] = true;
         caminoActual.add(origen.getData());
-        if ((origen == destino) && (caminoActual.size() > caminoOptimo.size())) {
+        if (origen == destino) {
+            if (caminoActual.size() > caminoOptimo.size()) {
             caminoOptimo.clear();
             caminoOptimo.addAll(caminoActual);
+            }
         }
         else {
             for (Edge<String> e: grafo.getEdges(origen)) {
