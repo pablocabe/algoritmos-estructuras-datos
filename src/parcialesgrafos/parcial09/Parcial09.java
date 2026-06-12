@@ -28,8 +28,8 @@ public class Parcial09 {
         caminoActual.add(origen.getData());
         if (origen == destino) {
             if (caminoActual.size() > caminoOptimo.size()) {
-            caminoOptimo.clear();
-            caminoOptimo.addAll(caminoActual);
+                caminoOptimo.clear();
+                caminoOptimo.addAll(caminoActual);
             }
         }
         else {
