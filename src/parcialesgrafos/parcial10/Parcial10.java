@@ -9,7 +9,7 @@ import tp5.ejercicio01.Vertex;
 
 public class Parcial10 {
     
-    public List<String> caminoConMayorDistorcionDelRumor(Graph<String> red, String origen) {
+    public List<String> caminoConMayorDistorsionDelRumor(Graph<String> red, String origen) {
         List<String> listaFinal = new LinkedList<String>();
         if (!red.isEmpty()) {
             Vertex<String> origenVertex = red.search(origen);
@@ -19,13 +19,13 @@ public class Parcial10 {
                 int distanciaMaxima = -1;
                 boolean[] marcas = new boolean[cantPersonas];
                 List<String> listaActual = new LinkedList<String>();
-                caminoConMayorDistorcionDelRumor(red, origenVertex, marcas, listaFinal, listaActual, cantPersonas, distanciaActual, distanciaMaxima);
+                caminoConMayorDistorsionDelRumor(red, origenVertex, marcas, listaFinal, listaActual, cantPersonas, distanciaActual, distanciaMaxima);
             }
         }
         return listaFinal;
     }
 
-    private int caminoConMayorDistorcionDelRumor(Graph<String> grafo, Vertex<String> origen, boolean[] marcas, List<String> listaFinal, List<String> listaActual, int cantPersonas, int distanciaActual, int distanciaMaxima) {
+    private int caminoConMayorDistorsionDelRumor(Graph<String> grafo, Vertex<String> origen, boolean[] marcas, List<String> listaFinal, List<String> listaActual, int cantPersonas, int distanciaActual, int distanciaMaxima) {
         marcas[origen.getPosition()] = true;
         listaActual.add(origen.getData());
         if (listaActual.size() == cantPersonas) {
@@ -40,7 +40,7 @@ public class Parcial10 {
                 int j = ady.getTarget().getPosition();
                 int peso = ady.getWeight();
                 if (!marcas[j]) {
-                    distanciaMaxima = caminoConMayorDistorcionDelRumor(grafo, ady.getTarget(), marcas, listaFinal, listaActual, cantPersonas, distanciaActual + peso, distanciaMaxima);
+                    distanciaMaxima = caminoConMayorDistorsionDelRumor(grafo, ady.getTarget(), marcas, listaFinal, listaActual, cantPersonas, distanciaActual + peso, distanciaMaxima);
                 }
             }
         }
