@@ -1,3 +1,5 @@
+// Mi parcial era similar a este pero arrancaba en origen = "NodoRaiz" y la secuencia era Impar -> Par -> Impar.
+
 package parcialesgrafos.parcial15;
 
 import java.util.Iterator;
