@@ -21,7 +21,7 @@ public class Parcial10 {
         boolean esPar = (nodo.getData() % 2 == 0);
         if ((esPar) && (nodo.hasLeftChild()) && (nodo.hasRightChild()))
             resultado += nodo.getData();
-        else if ((!esPar) && ((nodo.hasLeftChild() & !nodo.hasRightChild()) | (nodo.hasRightChild() & !nodo.hasLeftChild())))
+        else if ((nodo.hasLeftChild() & !nodo.hasRightChild()) | (nodo.hasRightChild() & !nodo.hasLeftChild()))
             resultado -= nodo.getData();
         return resultado;
     }
