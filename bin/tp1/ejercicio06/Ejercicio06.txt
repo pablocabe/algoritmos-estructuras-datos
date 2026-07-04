@@ -1,0 +1,17 @@
+a) ¿Cuándo ArrayList es mejor que LinkedList?
+ArrayList guarda los elementos en un array interno,
+entonces acceder a un elemento por índice (lista.get(5)) es instantáneo.
+Es mejor cuando hacés muchas lecturas o accesos por posición.
+
+b) ¿Cuándo LinkedList es mejor que ArrayList?
+LinkedList guarda cada elemento en un "nodo" que apunta al siguiente.
+Insertar o eliminar elementos al principio o en el medio es más rápido
+porque solo cambia los punteros, no mueve todos los elementos como haría el ArrayList.
+
+c) ¿Diferencia en memoria?
+ArrayList usa menos memoria — solo guarda los valores.
+LinkedList usa más memoria — cada nodo guarda el valor más dos referencias (al nodo anterior y al siguiente).
+
+d) ¿Cuándo usar cada uno?
+Usá ArrayList cuando necesitás acceder mucho a elementos por índice y pocas inserciones/eliminaciones.
+Usá LinkedList cuando necesitás insertar o eliminar elementos frecuentemente, especialmente al principio de la lista.
