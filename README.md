@@ -21,7 +21,7 @@ Este repositorio está dividido en los siguientes módulos:
 * [Práctica de Grafos](./src/tp5/): Ejercicios resueltos del quinto módulo.
 
 #### 📄 Teoría
-* [Ejercitación de Árboles](./ejercitacion-teorica/01-ejercitacion-teorica-arboles/): Ejercicios teóricos resueltos.
+* [Ejercitación de Árboles](./ejercitacion-teorica/01-ejercitacion-teorica-arboles.pdf/): Ejercicios teóricos resueltos.
 * [Ejercitación de Heap](./teoria/heap/): Ejercicios teóricos resueltos.
 * [Adicionales de Tiempos de Ejecución](./teoria/tiempos/): Ejercicios adicionales resueltos.
 
