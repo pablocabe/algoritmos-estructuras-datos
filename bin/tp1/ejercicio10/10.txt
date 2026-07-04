@@ -1,0 +1,5 @@
+Estructura: DoubleEndedQueue
+
+Porque la mayoría de las personas se encolan al final normalmente con enqueue(),
+pero las personas con prioridad (embarazadas, movilidad reducida, mayores de 70)
+se insertan al frente con enqueueFirst(), sin que las demás pierdan su orden.

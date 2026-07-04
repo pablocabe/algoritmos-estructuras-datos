@@ -1,0 +1,12 @@
+Prácticamente ninguna diferencia en el código:
+como ambas implementan la interfaz List, el cambio sería solo en la línea de declaración:
+
+En lugar de:
+ArrayList<Integer> lista = new ArrayList<>();
+
+Se usaría:
+LinkedList<Integer> lista = new LinkedList<>();
+
+El resto del código (el add, el for-each, etc.) funcionaría exactamente igual gracias al polimorfismo.
+La diferencia es interna: ArrayList usa un arreglo dinámico en memoria contigua, mientras que LinkedList usa nodos enlazados. 
+Para este ejercicio en particular —solo agregar elementos al final e iterar— el comportamiento visible es idéntico.
