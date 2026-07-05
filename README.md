@@ -23,7 +23,7 @@ Este repositorio está dividido en los siguientes módulos:
 #### 📄 Teoría
 * [Ejercitación de Árboles](./ejercitacion-teorica/01-ejercitacion-teorica-arboles.pdf/): Ejercicios teóricos resueltos.
 * [Ejercitación de Heap](./ejercitacion-teorica/02-ejercitacion-teorica-heap.pdf/): Ejercicios teóricos resueltos.
-* [Adicionales de Tiempos de Ejecución](./ejercitacion-teorica/03-ejercitacion-adicional-tiempos-ejecucion.pdf/): Ejercicios adicionales resueltos.
+* [Adicionales de Tiempos de Ejecución](./ejercitacion-teorica/03-ejercitacion-adicional-tiempos-ejecucion/): Ejercicios adicionales resueltos.
 * [Ejercitación de Grafos](./ejercitacion-teorica/04-ejercitacion-teorica-grafos.pdf/): Ejercicios teóricos resueltos.
 
 #### 🔗 PDFs y Recursos
