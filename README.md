@@ -10,7 +10,7 @@ Este repositorio está dividido en los siguientes módulos:
 
 #### 📄 Parciales
 * [Parciales de Árboles](./src/parcialesarboles/): Parciales resueltos de Árboles (primer parcial).
-* [Parciales de Tiempos de Ejecución](./src/imperativo/): Parciales resueltos de Tiempos de Ejecución (segundo parcial).
+* [Parciales de Tiempos de Ejecución](./src/parcialestiemposejecucion/): Parciales resueltos de Tiempos de Ejecución (segundo parcial).
 * [Parciales de Grafos](./src/parcialesgrafos/): Parciales resueltos de Grafos (tercer parcial).
   
 #### 📄 Práctica
