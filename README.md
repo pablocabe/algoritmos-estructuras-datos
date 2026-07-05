@@ -28,4 +28,4 @@ Este repositorio está dividido en los siguientes módulos:
 
 #### 🔗 PDFs y Recursos
 * [PDFs](./pdfs/): Enunciados de las prácticas y las ejercitaciones teóricas.
-* [Recursos](./recursos/): Explicaciones, apoyo matemático y sinópsis de estructuras.
+* [Recursos](./recursos/): Explicaciones, apoyo matemático y sinopsis de estructuras.
