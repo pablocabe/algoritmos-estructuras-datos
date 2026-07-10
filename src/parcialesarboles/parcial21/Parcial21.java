@@ -11,11 +11,10 @@ public class Parcial21 {
     
     public List<Integer> nivel (int num) {
         List<Integer> lista = new LinkedList<Integer>();
-        if ((arbol != null) && (!arbol.isEmpty())){
+        if ((arbol != null) && (!arbol.isEmpty())) {
             Queue<GeneralTree<Integer>> queue = new Queue<GeneralTree<Integer>>(); 
             queue.enqueue(this.arbol);
             queue.enqueue(null);
-            int nivel = 0;
             boolean encontre = false;
             boolean nodoCumple = true;
             while ((!queue.isEmpty()) && (!encontre)) {
@@ -36,7 +35,6 @@ public class Parcial21 {
                 }
                 // Si el nivel no cumplió siempre vaciamos la lista, sin importar si quedan más niveles
                 else {
-                    nivel++;
                     nodoCumple = true;
                     lista.clear();
                     // Solo volvemos a encolar null si la cola no quedó vacía
