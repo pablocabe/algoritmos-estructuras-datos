@@ -7,28 +7,24 @@ import tp3.ejercicio01.GeneralTree;
 public class Parcial18 {
 
     public List<String> resolver(int valor, GeneralTree<Integer> arbol) {
-        List<String> resultado = new LinkedList<String>();
+        List<String> lista = new LinkedList<String>();
         if ((arbol != null) && (!arbol.isEmpty())){
-            resolverAux(arbol, valor, resultado, 1);
+            int nivel = 0;
+            resolver(arbol, valor, lista, nivel);
         }
-        return resultado;
+        return lista;
     }
 
-    private void resolverAux(GeneralTree<Integer> nodoActual, int valor, List<String> resultado, int nivel) {
-        // Inorden
+    private void resolver(GeneralTree<Integer> nodoActual, int valor, List<String> lista, int nivel) {
         List<GeneralTree<Integer>> children = nodoActual.getChildren();
-        // Procesar hijo izquierdo
         if (nodoActual.hasChildren()) {
-            resolverAux(children.get(0), valor, resultado, nivel + 1);
+            resolver(children.get(0), valor, lista, nivel + 1);
         }
-        // Procesar actual
         if (nodoActual.getData() > valor){
-            String elem = nodoActual.getData() + "nivel " + nivel;
-            resultado.add(elem);
+            lista.add(nodoActual.getData() + " nivel " + nivel);
         }
-        // Procesar hijos restantes
         for (int i = 1; i < children.size(); i++) {
-            resolverAux(children.get(i), valor, resultado, nivel + 1);
+            resolver(children.get(i), valor, lista, nivel + 1);
         }
     }
         
