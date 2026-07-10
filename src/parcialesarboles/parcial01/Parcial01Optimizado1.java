@@ -5,7 +5,7 @@ import java.util.List;
 import tp3.ejercicio01.GeneralTree;
 
 // Primera fecha 2025 - Tema 1
-public class Parcial01Optimizado {
+public class Parcial01Optimizado1 {
 
     public static List<Integer> caminoParidadAlternante (GeneralTree<Integer> arbol) {
         List<Integer> mejorCamino = new LinkedList<>();

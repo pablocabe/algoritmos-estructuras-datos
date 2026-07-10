@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import tp3.ejercicio01.GeneralTree;
 
-public class Parcial02Optimizado {
+public class Parcial02Optimizado1 {
 
     public static List<Integer> caminoSignoAlternante(GeneralTree<Integer> arbol) {
         List<Integer> caminoFinal = new LinkedList<Integer>();
