@@ -18,15 +18,13 @@ public class Parcial23 {
     private static int resolver(GeneralTree<Sucursal> nodoActual, List<String> lista) {
         int cantAcumulado = 0;
         if (nodoActual.isLeaf()) {
-            // El enunciado dice que la hoja siempre cumple, se agrega directo
             lista.add(nodoActual.getData().getNombre());
-        } else {
+        }
+        else {
             List<GeneralTree<Sucursal>> children = nodoActual.getChildren();
             for (GeneralTree<Sucursal> child : children) { 
                 cantAcumulado += resolver(child, lista);
             }
-            
-            // Solo los nodos internos necesitan pasar la validación
             if (nodoActual.getData().getCantPaquetes() > cantAcumulado) { 
                 lista.add(nodoActual.getData().getNombre());
             }
