@@ -86,8 +86,19 @@ public class BinaryTree <T> {
 			cantHojas += this.getRightChild().contarHojas();
 		return cantHojas;
 	}
-    	 
+
 	public BinaryTree<T> espejo() {
+		BinaryTree<T> arbolEspejo = new BinaryTree<T>(this.getData());
+		if (this.hasLeftChild()) {
+			arbolEspejo.addRightChild(this.getLeftChild().espejo());
+		}
+		if (this.hasRightChild()) {
+			arbolEspejo.addLeftChild(this.getRightChild().espejo());
+		}
+		return arbolEspejo;
+	}
+    	 
+	/* public BinaryTree<T> espejo() {
 		if (this.isLeaf())
 			return new BinaryTree<T>(this.getData());
 		BinaryTree<T> nuevoNodo = new BinaryTree<T>(this.getData());
@@ -97,6 +108,7 @@ public class BinaryTree <T> {
 			nuevoNodo.addRightChild(this.getLeftChild().espejo());
  		return nuevoNodo;
     }
+	*/
 
 	// 0<=n<=m
     public void entreNiveles(int n, int m) {
