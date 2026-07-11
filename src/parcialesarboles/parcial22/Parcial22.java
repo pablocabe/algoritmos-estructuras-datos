@@ -23,7 +23,7 @@ public class Parcial22 {
             resolver(nodoActual.getLeftChild(), arbolNuevo.getLeftChild(), valorOriginal);
         }
         if (nodoActual.hasRightChild()) {
-            arbolNuevo.addLeftChild(new BinaryTree<Integer>());
+            arbolNuevo.addRightChild(new BinaryTree<Integer>());
             resolver(nodoActual.getRightChild(), arbolNuevo.getRightChild(), 0);
         }
     }
